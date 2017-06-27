@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		if ($result->num_rows == 1) {
 
-			$db_field = $result->fetch();
+			$db_field = $result;
 
 			if (password_verify($pword, $db_field['L2'])) {
 				session_start();
