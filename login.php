@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
 	$sql->bindParam(":user", $uname);
-	$sql->execute();
-	$result = $sql->get_result();
+	$result = $sql->execute();
+	
 
 		if ($result->num_rows == 1) {
 
