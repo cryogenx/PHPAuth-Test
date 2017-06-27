@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$result = $sql->fetch();
 	
 	var_dump($result);
+	echo count($result);
 
 		if ($result->num_rows == 1) {
 
