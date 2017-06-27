@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	if ($db_found) {
 
-	$SQL = $db_found->prepare('SELECT * FROM login WHERE L1 = ?');
-	$SQL->bind_param('s', $uname);
+	$SQL = $db_found->prepare('SELECT * FROM login WHERE L1 = :user');
+	$SQL->bind_param(':user', $uname);
 	$SQL->execute();
 	$result = $SQL->get_result();
 
