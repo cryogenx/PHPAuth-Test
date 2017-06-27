@@ -20,8 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$sql->execute();
 	$result = $sql->fetch();
 	
+	echo '<pre>';
 	var_dump($result);
 	echo count($result);
+	echo '</pre>';
 
 		if ($result->num_rows == 1) {
 
