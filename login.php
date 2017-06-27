@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	var_dump($rowCount);
 	echo '</pre>';
 
-		if ($rowCount == 1) {
+		//if ($rowCount == 1) {
 
 
 			if (password_verify($pword, $result['L2'])) {
@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				session_start();
 				$_SESSION['login'] = '';
 			}
-		}
-		else {
-			$errorMessage = "username FAILED";
-		}
+		// }
+		// else {
+		// 	$errorMessage = "username FAILED";
+		// }
 	}
 }
 ?>
