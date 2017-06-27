@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if ($conn) {
 
 	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
-	$sql->bind_param(":user", $uname);
+	$sql->bindParam(":user", $uname);
 	$sql->execute();
 	$result = $sql->get_result();
 
