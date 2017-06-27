@@ -22,10 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	
 	echo '<pre>';
 	var_dump($result);
-	echo count($result);
 	echo '</pre>';
 
-		if ($result->num_rows == 1) {
+		if ($result->rowCount() == 1) {
 
 			$db_field = $result;
 
