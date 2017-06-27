@@ -17,14 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
 	$sql->bindParam(":user", $uname);
 	$sql->setFetchMode(PDO::FETCH_ASSOC);
-	$res = $sql->execute();
+	$sql->execute();
+	$rowCount = $sql->rowCount();
 	$result = $sql->fetch();
 	
 	echo '<pre>';
 	var_dump($result);
 	echo '</pre>';
 
-		if ($res->rowCount() == 1) {
+		if ($rowCount == 1) {
 
 			$db_field = $result;
 
