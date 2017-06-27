@@ -9,24 +9,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$uname = $_POST['username'];
 	$pword = $_POST['password'];
 
-	$database = "login";
-
 	$db_found = new PDO("sqlsrv:Server=".db_host.";Database=".db_name, db_user, db_pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
 	if ($db_found) {		
-		$SQL = $db_found->prepare('SELECT * FROM login WHERE L1 = ?');
-		$SQL->bind_param('s', $uname);
-		$SQL->execute();
-		$result = $SQL->get_result();
+		$sql = $db_found->prepare("SELECT * FROM login WHERE L1 = :uname");
+		$sql->bindParam(":uname", $uname);
+		$sql->execute();
+		$rowCount = $sql->rowCount();
+		$result = $sql->fetch();
 
-		if ($result->num_rows > 0) {
+		if ($rowCount > 0) {
 			$errorMessage = "Username already taken";
 		}
 		else {
 			$phash = password_hash($pword, PASSWORD_DEFAULT);
-			$SQL = $db_found->prepare("INSERT INTO login (L1, L2) VALUES (?, ?)");
-			$SQL->bind_param('ss', $uname, $phash);
-			$SQL->execute();
+			$sql = $db_found->prepare("INSERT INTO login (L1, L2) VALUES (:uname, :phash)");
+			$sql->bindParam(":uname", $uname);
+			$sql->bindParam(":phash", $phash);
+			$sql->execute();
 
 			header ("Location: login.php");
 		}
