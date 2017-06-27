@@ -4,12 +4,12 @@
 //Connection info for Database
 	define ('db_type', 'mssql');
 	define ('db_host', 'inferno.hernandoclerk.org');
-	define ('db_name', 'VAB');
+	define ('db_name', 'PHPAuth');
 	define ('db_user', 'infernodev');
 	define ('db_pass', 'uAMFMbggH5H8');
 
 //Application Settings
-	define ('app_name', 'VAB - Api');
+	define ('app_name', 'PHPAuth - Api');
 	define ('app_version', '0.1 - alpha');
 
 //Default variables
