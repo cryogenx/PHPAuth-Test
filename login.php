@@ -23,13 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	
 	echo '<pre>';
 	var_dump($result);
+
+	var_dump($rowCount);
 	echo '</pre>';
 
 		if ($rowCount == 1) {
 
-			$db_field = $result;
 
-			if (password_verify($pword, $db_field['L2'])) {
+			if (password_verify($pword, $result['L2'])) {
 				session_start();
 				$_SESSION['login'] = "1";
 				header ("Location: page1.php");
