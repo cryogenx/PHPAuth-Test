@@ -12,14 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$database = "login";
 
 
-	$db_found = new PDO("sqlsrv:Server=".db_host.";Database=".db_name, db_user, db_pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+	$conn= new PDO("sqlsrv:Server=".db_host.";Database=".db_name, db_user, db_pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
-	if ($db_found) {
+	if ($conn) {
 
-	$SQL = $db_found->prepare('SELECT * FROM login WHERE L1 = :user');
-	$SQL->bind_param(':user', $uname);
-	$SQL->execute();
-	$result = $SQL->get_result();
+	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
+	$sql->bind_param(":user", $uname);
+	$sql->execute();
+	$result = $sql->get_result();
 
 		if ($result->num_rows == 1) {
 
