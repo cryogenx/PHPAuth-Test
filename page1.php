@@ -1,24 +1,20 @@
-<?PHP
+<?php
 session_start();
 if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 	header ("Location: login.php");
 }
 
 ?>
-	<html>
+<html>
 	<head>
-	<title>Basic Login Script</title>
-
-
+		<title>Basic Login Script</title>
 	</head>
 	<body>
-
-
-
-
-	User <?php echo $_SESSION['username']; ?> Logged in
-<P>
-<A HREF = logout.php>Log out</A>
-
+		<p>
+			User <?php echo $_SESSION['username']; ?> Logged in
+		</p>
+		<p>
+			<a href=logout.php>Log out</a>
+		</p>
 	</body>
-	</html>
+</html>

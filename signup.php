@@ -37,28 +37,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-	<html>
+<html>
 	<head>
-	<title>Basic Signup Script</title>
-
-
+		<title>Basic Signup Script</title>
 	</head>
 	<body>
+	<form name ="form1" method="post" action="signup.php">
+		Username: <input type='text' name ='username'  value="<?php print $uname;?>" >
+		Password: <input type='text' name ='password'  value="<?php print $pword;?>" >
 
-
-<FORM NAME ="form1" METHOD ="POST" ACTION ="signup.php">
-
-Username: <INPUT TYPE = 'TEXT' Name ='username'  value="<?PHP print $uname;?>" >
-Password: <INPUT TYPE = 'TEXT' Name ='password'  value="<?PHP print $pword;?>" >
-
-<P>
-<INPUT TYPE = "Submit" Name = "Submit1"  VALUE = "Register">
-
-
-</FORM>
-<P>
-
-<?PHP print $errorMessage;?>
+		<p>
+			<input type = "Submit" Name = "Submit1"  VALUE = "Register">
+		</p>
+	</form>
+	<p>
+		<?PHP print $errorMessage;?>
+	</p>
 
 	</body>
-	</html>
+</html>
