@@ -16,7 +16,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
 
 
-	User Logged in
+	User <?php echo $_SESSION['username']; ?> Logged in
 <P>
 <A HREF = logout.php>Log out</A>
 

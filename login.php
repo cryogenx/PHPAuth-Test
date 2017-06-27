@@ -13,37 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$conn= new PDO("sqlsrv:Server=".db_host.";Database=".db_name, db_user, db_pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
 	if ($conn) {
-
-	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
-	$sql->bindParam(":user", $uname);
-	$sql->setFetchMode(PDO::FETCH_ASSOC);
-	$sql->execute();
-	$rowCount = $sql->rowCount();
-	$result = $sql->fetch();
-	
-	echo '<pre>';
-	var_dump($result);
-
-	var_dump($rowCount);
-	echo '</pre>';
-
-		//if ($rowCount == 1) {
-
-
-			if (password_verify($pword, $result['L2'])) {
-				session_start();
-				$_SESSION['login'] = "1";
-				header ("Location: page1.php");
-			}
-			else {
-				$errorMessage = "Login FAILED";
-				session_start();
-				$_SESSION['login'] = '';
-			}
-		// }
-		// else {
-		// 	$errorMessage = "username FAILED";
-		// }
+		$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
+		$sql->bindParam(":user", $uname);
+		$sql->setFetchMode(PDO::FETCH_ASSOC);
+		$sql->execute();
+		$rowCount = $sql->rowCount();
+		$result = $sql->fetch();
+		
+		if (password_verify($pword, $result['L2'])) {
+			session_start();
+			$_SESSION['login'] = "1";
+			$_SESSION['username'] = $uname;
+			header ("Location: page1.php");
+		}
+		else {
+			$errorMessage = "Login FAILED";
+			session_start();
+			$_SESSION['login'] = '';
+		}
 	}
 }
 ?>
