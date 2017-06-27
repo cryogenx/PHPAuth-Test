@@ -18,12 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
 	$sql->bindParam(":user", $uname);
+	$sql->setFetchMode(PDO::FETCH_ASSOC)
 	$result = $sql->execute();
 	
+	var_dump($result);
 
 		if ($result->num_rows == 1) {
 
-			$db_field = $result->fetch_assoc();
+			$db_field = $result->fetch();
 
 			if (password_verify($pword, $db_field['L2'])) {
 				session_start();
