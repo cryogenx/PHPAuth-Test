@@ -9,8 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$uname = $_POST['username'];
 	$pword = $_POST['password'];
 
-	$database = "login";
-
 
 	$conn= new PDO("sqlsrv:Server=".db_host.";Database=".db_name, db_user, db_pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
@@ -19,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$sql = $conn->prepare("SELECT * FROM login WHERE L1 = :user");
 	$sql->bindParam(":user", $uname);
 	$sql->setFetchMode(PDO::FETCH_ASSOC);
-	$result = $sql->execute();
+	$sql->execute();
+	$result = $sql->fetch();
 	
 	var_dump($result);
 
